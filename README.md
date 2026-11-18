@@ -1,0 +1,1 @@
+Offline-first cognitive training app (PWA + Windows desktop) with adaptive episodic memory, working memory and perceptual speed tasks inspired by the COGITO study. English / European Portuguese. Not affiliated with the study; not clinically validated.
