@@ -1,0 +1,17 @@
+# Netlify headers (copied into dist/ by the build, so drag-and-drop deploys use them too).
+# The service worker, page and manifest must not be cached, or app updates would not reach users.
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+/index.html
+  Cache-Control: no-cache
+/
+  Cache-Control: no-cache
+/manifest.webmanifest
+  Cache-Control: no-cache
+  Content-Type: application/manifest+json
+# Hashed build files never change.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

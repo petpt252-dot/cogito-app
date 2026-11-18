@@ -1,0 +1,74 @@
+{
+  "name": "cogito",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --port 5190 --strictPort",
+    "test": "vitest run",
+    "typecheck": "tsc -b",
+    "app": "npm run build && electron .",
+    "smoke": "electron . --smoke-test",
+    "icon": "electron electron/make-icon.cjs",
+    "dist:win": "npm run build && vitest run && npm run icon && electron-builder --win nsis portable --x64"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "electron": "^44.2.0",
+    "electron-builder": "^26.18.0",
+    "fake-indexeddb": "^6.0.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8"
+  },
+  "productName": "COGITO",
+  "description": "COGITO — evidence-informed cognitive training (offline). Not affiliated with the COGITO study.",
+  "author": "COGITO",
+  "license": "UNLICENSED",
+  "main": "electron/main.cjs",
+  "build": {
+    "appId": "pt.cogito.training",
+    "productName": "COGITO",
+    "asar": true,
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/main.cjs",
+      "build/icon.png",
+      "package.json"
+    ],
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "artifactName": "COGITO-Setup-${version}-${arch}.${ext}",
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "COGITO"
+    },
+    "portable": {
+      "artifactName": "COGITO-Portable-${version}-${arch}.${ext}"
+    }
+  }
+}
